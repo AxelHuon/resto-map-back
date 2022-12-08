@@ -30,6 +30,11 @@ io.on('connection' , socket => {
 		socket.to(data.room).emit("receive_message", data)
 		console.log(data)
 	})
+
+	socket.on('send_time' ,(data)=>{
+		socket.to(data.room).emit("receive_time", data)
+		console.log(`time : ${data}`)
+	})
 })
 
 
