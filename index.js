@@ -22,12 +22,18 @@ io.on('connection' , socket => {
 
 	socket.on("join_room" , (data)=>{
 		socket.join(data.id);
-		console.log(`le user ${socket.id} a joint la room ${data.id}`)
 	})
-
 
 	socket.on('send_message' ,(data)=>{
 		socket.to(data.room).emit("receive_message", data)
+	})
+
+	socket.on('change_resto' ,(data)=>{
+		socket.to(data.room).emit("receive_new_resto", data)
+	})
+
+	socket.on('add_user' ,(data)=>{
+		socket.to(data.room).emit("receive_new_user", data)
 		console.log(data)
 	})
 
