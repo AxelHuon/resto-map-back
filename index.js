@@ -34,13 +34,18 @@ io.on('connection' , socket => {
 
 	socket.on('add_user' ,(data)=>{
 		socket.to(data.room).emit("receive_new_user", data)
-		console.log(data)
 	})
 
 	socket.on('send_time' ,(data)=>{
 		socket.to(data.room).emit("receive_time", data)
 		console.log(`time : ${data}`)
 	})
+
+	socket.on('update_final_point' ,(data)=>{
+		console.log(data)
+		socket.to(data.room).emit("receive_new_location", data)
+	})
+
 })
 
 
